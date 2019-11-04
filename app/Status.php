@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Status extends Model
 {
+	use SoftDeletes;
+	
     public function transactions() {
     	return $this->hasMany('App\Transaction');
     }

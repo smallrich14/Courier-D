@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
+	use SoftDeletes;
+	
      public function status() {
     	return $this->belongsTo('App\Status');
     }
@@ -14,4 +16,11 @@ class Transaction extends Model
     public function user() {
     	return $this->belongsTo('App\User');
     }
+
+    public function items() {
+        return $this->belongsToMany('App\Item', 'transaction_items')
+            ->withPivot('borrow_date','return_date')
+            ->withTimestamps();
+    }
+
 }

@@ -16,7 +16,7 @@ class RolesTableSeeder extends Seeder
           ]);
 
         DB::table('roles')->insert([
-               'name' => 'customer'
+               'name' => 'borrower'
            ]);
     }
 }

@@ -21,7 +21,7 @@ class CreateTransactionsTable extends Migration
 
             // user_id
             $table->unsignedBigInteger()->nullable()->default(null);
-            $table->foreign('user_id');
+            $table->foreign('user_id')
                   ->references('id')->on('users')
                   ->onDelete('restrict')
                   ->onUpdate('cascade');

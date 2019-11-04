@@ -17,7 +17,15 @@ class StatusesTableSeeder extends Seeder
         ]);
 
         DB::table('statuses')->insert([
-        	'name' => 'not available'
+        	'name' => 'unavailable'
+        ]);
+
+        DB::table('statuses')->insert([
+            'name' => 'approved'
+        ]);
+
+        DB::table('statuses')->insert([
+            'name' => 'reject'
         ]);
     }
 }
