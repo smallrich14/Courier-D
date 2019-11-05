@@ -79,6 +79,8 @@ class ItemController extends Controller
 
             $item->save();
 
+        $request->session()->flash('item_message', 'Unit Successfully Added!');
+
           //== // 5. redirect user to view the newly created product
         return redirect(route('items.show', ['item'=> $item->id]));
     }
@@ -102,7 +104,8 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        //
+        $categories = Category::all();
+        return view('items.edit')->with('item', $item)->with('categories', $categories);
     }
 
     /**
@@ -114,8 +117,58 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+            'category' => 'required',
+            'image' => 'required|image|max:20000',
+            'description' => 'required|string',
+        ]);
+
+       if(
+            !$request->hasFile('image') &&
+            $item->name == $request->input('name') &&
+            $item->description == $request->input('description') &&
+            $item->category_id == $request->input('category') 
+
+        ){
+            $request->session()->flash('update_failed', 'No changes made');
+            
+        }else {
+            // update the entry in the database and return the updated entry
+
+            // check if there's a file uploaded
+            if($request->hasFile('image')){
+                $request->validate([
+                    'image' => 'required|image|max:20000'
+                ]);
+
+                $file = $request->file('image');
+                $file_name = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $file_extension = $file->extension();
+                $random_chars = Str::random(10);
+                $new_file_name = date('Y-m-d-H-i-s') . "_" . $random_chars . "_" . $file_name . "." . $file_extension;
+
+                $filepath = $file->storeAs('images', $new_file_name,'public');
+
+                // set the new image path as image value of product
+                $product->image = $filepath;
+            }
+
+
+            //== // 4. update
+            $item->name = $request->input('name');
+            $item->category_id = $request ('category');
+            $item->description = $request ('description');
+
+            $item->save();
+
+        $request->session()->flash('item_message', 'Item Successfully Updated!');
+
+          //== // 5. redirect user to view the newly created product
+        return redirect(route('items.show', ['item'=> $item->id]));
     }
+
+}
 
     /**
      * Remove the specified resource from storage.

@@ -21,12 +21,6 @@
 				@endif
 					<div class="form-group text-center">
 						<label for="category" >New Category</label>
-						{{-- <div class="pb-3">
-							<input type="name" name="title" class="form-control">
-						</div>
-						<div class="pb-3">
-							<input type="file" name="image" class="file form-control">
-						</div> --}}
 							<input type="text" name="category" class="form-control" 
 								value="{{isset($category) ? $category->name : "" 	}}"
 							>

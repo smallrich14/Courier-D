@@ -37,7 +37,7 @@
 
 								{{-- edit item --}}
 							
-								<a href="{{ route('items.edit', ['item'=> $item->id]) }}" class="btn btn-warning w-100 my-1">Edit item</a>
+								<a href="{{route('items.edit', ['item'=> $item->id])}}" class="btn btn-warning w-100 my-1">Edit item</a>
 
 								{{-- delete form --}}
 								<form action="{{route('items.destroy', ['item' => $item->id])}}" method="post">

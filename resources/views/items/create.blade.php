@@ -5,11 +5,18 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
-				<h3 class="jumbotron text-center bg-info text-light">Units</h3>
+				<h3 class="jumbotron text-center bg-info text-light">{{isset($item) ? 'Edit Units' : 'Create New Units'}}</h3>
 				<hr>
-				<form method="post" action="{{route('items.store')}}" enctype="multipart/form-data">
+				<form method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
 					@csrf
-
+					@if(isset($item))
+					@method('put')
+					@endif
+				@if(Session::has('item_message'))
+				<div class="alert alert-success">
+					{{Session::get('item_message')}}
+				</div>
+				@endif
 					{{-- input for Unit name --}}
 					<div class="form-group">
 						<label type="text" name="name" class="form-control" id="name">Unit Name:</label>
@@ -17,7 +24,7 @@
 					</div>
 					@if($errors->has('name'))
 						<div class="alert alert-danger">
-							<small class="mb-0">Product name Required</small>
+							<small class="mb-0">Unit name Required</small>
 						</div>
 					@endif
 
@@ -53,7 +60,7 @@
 						</div>
 					@endif
 
-					<button class="btn btn-primary btn-block">Add Unit</button>
+					<button class="btn btn-primary btn-block">Add Units</button>
 				</form>
 			</div>
 		</div>
