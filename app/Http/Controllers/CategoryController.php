@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        // dd($categories);
+
+        return view('categories.index')->with('categories', $categories);
     }
 
     /**
@@ -35,7 +38,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //validation for categories 
+        $request->validate([
+            'category' => 'required|string|unique:categories,name'
+        ]);
+
+        // this will store in database
+        Category::create([
+            'name' => $request->input('category')
+        ]);
+
+        // for error handling
+        $request->session()->flash('category_message', 'Category Successfully Added!');
+
+        return redirect(route('categories.create'));
+
+
     }
 
     /**
@@ -57,7 +75,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.create')->with('category', $category);
     }
 
     /**
@@ -69,7 +87,19 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+         
+        $request->validate([
+            'category' => 'required|string|unique:categories,name'
+        ]);
+
+        $category->update([
+            'name' => $request->input('category')
+        ]);
+
+        $request->session()->flash('category_message', 'Category Successfully Updated!');
+
+        return redirect(route('categories.index'));
+
     }
 
     /**
@@ -80,6 +110,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return redirect(route('categories.index'))->with('destroy_message', 'Product Deleted');
+
     }
 }
