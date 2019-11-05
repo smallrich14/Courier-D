@@ -45,7 +45,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="" class="nav-link">Items</a>
+                            <a href="{{route('items.index')}}" class="nav-link">Items</a>
                         </li>
                     </ul>
 
