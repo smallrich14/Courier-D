@@ -16,6 +16,8 @@ class CreateTransactionsTable extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('transaction_number');
+            $table->date('borrow_date');
+            $table->date('return_date');
             $table->timestamps();
 
 

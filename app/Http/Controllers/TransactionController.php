@@ -8,7 +8,7 @@ use App\Item;
 use App\Status;
 use Auth;
 use Str;
-use Session;
+use Category;
 use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
@@ -20,7 +20,12 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        return view('transactions.index');
+        // $categories = Category::all();
+        $items = Item::all();
+        $transactions = Transaction::all();
+        // dd($items);
+       
+        return view('transactions.index')->with('items', $items)->with('transactions', $transactions);
     }
 
     /**
@@ -41,13 +46,30 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+         $request->validate([
+            'borrow' => 'required',
+            'return' => 'required'
+        ]);
+
+        //   Transaction::create([
+        //     'borrow' => $request->input('borrow'),
+        //     'return' => $request->input('return'),
+        // ]);
+        // dd($request->all());
         $transaction = new Transaction;
         $transaction_number = Auth::user()->id . Str::random(8) . time();
         $user_id = Auth::user()->id;
+        $borrow_date = $request->input('borrow');
+        $return_date = $request->input('return');
 
         $transaction->transaction_number = $transaction_number;
         $transaction->user_id = $user_id;
+        $transaction->borrow_date = $borrow_date;
+        $transaction->return_date = $return_date;
         $transaction->save(); 
+
+        // dd($transaction);
+        // $request->session()->flash('transaction_message', 'Successfully Requested!');
 
         return redirect(route('transactions.show', ['transaction'=>$transaction->id]));
     }
@@ -60,7 +82,11 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        return view('transactions.show')->with('transaction', $transaction);
+        $items = Item::all();
+        $transactions = Transaction::all();
+        // dd($transaction);
+
+        return view('transactions.show')->with('transactions', $transactions)->with('items', $items);
     }
 
     /**

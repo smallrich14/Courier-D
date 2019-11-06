@@ -15,9 +15,9 @@ class CreateTransactionItemsTable extends Migration
     {
         Schema::create('transaction_items', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps();
-            $table->date('barrow_date');
+            $table->date('borrow_date');
             $table->date('return_date');
+          
             // item id
             $table->unSignedBigInteger('item_id');
             $table->foreign('item_id')
@@ -30,6 +30,8 @@ class CreateTransactionItemsTable extends Migration
                 ->references('id')->on('transactions')
                 ->onDelete('restrict')
                 ->onUpdate('cascade');
+                
+            $table->timestamps();
         });
     }
 

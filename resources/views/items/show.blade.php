@@ -19,27 +19,45 @@
 							<p class="card-text">{{$items->description}}</p>
 					</div>
 					<div class="input-group mb-3">
-						<form action="{{route('transactions.index')}}" method="post" class="w-100">
+						<form action="{{route('transactions.store')}}" method="post" class="w-100">
 							<div class="form-group">
 								@csrf
-								<input type="hidden" name="id" value="{{$items->id}}">
-								<label for="request_date"></label>
-								{{-- calendar button --}}
-								<div class="input-group mb-3">
-								  <div class="input-group-prepend">
-								    <a class="btn btn-info borrow-date ml-4"data-id="{{$items->id}}">Borrow Date:</a>
-								    <input id="datepicker" width="354" />
+								@if(Session::has('transaction_message'))
+								<div class="alert alert-success">
+									{{Session::get('transaction_message')}}
 								</div>
+								@endif
 
-								<div class="input-group mt-2">
-								  <div class="input-group-prepend">
-								    <a class="btn btn-info return-date ml-4 "data-id="{{$items->id}}">Return Date:</a>
-								    <input id="datepicker2" width="356" />
+								<input type="hidden" name="request" value="{{$items->id}}">
+								<label for="request_date"></label>
+								{{-- calendar --}}
+								<div class="form-group">
+								    <a class="btn btn-info ml-4">Borrow Date:</a>
+								    <input type="date" name="borrow" id="borrow" class="form-control"/>
+								 </div>
+
+								 @if($errors->has('borrow'))
+								 	<div class="alert alert-danger">
+								 		<small class="mb-0">Date Required</small>
+								 	</div>
+								 @endif
+
+								<div class="form-group">
+								    <a class="btn btn-info ml-4">Return Date:</a>
+								    <input type="date" name="return" id="return" class="form-control"/>
 								</div>
 								{{-- end of calendar --}}
 							</div>
+							
+							 @if($errors->has('return'))
+								 <div class="alert alert-danger">
+								 	<small class="mb-0">Date Required</small>
+								 </div>
+							 @endif
 
-							<button type="submit" class="btn btn-success mt-5 w-100">Request</button>
+
+
+							<button type="submit" class="btn btn-success mt-5 w-100">Rent</button>
 						</form>
 
 						<a href="{{route('items.edit', ['item'=> $items->id])}}" class="btn btn-warning w-100 my-1">Edit Products</a>
@@ -56,14 +74,4 @@
 		</div>
 	</div>
 
-
-    <script>
-        $('#datepicker').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-
-        $('#datepicker2').datepicker({
-            uiLibrary: 'bootstrap4'
-        });
-    </script> 
 @endsection
