@@ -4,6 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use App\Item;
+use App\Status;
+use Auth;
+use Str;
+use Session;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -14,7 +20,7 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        return view('transactions.index');
     }
 
     /**
@@ -35,7 +41,15 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $transaction = new Transaction;
+        $transaction_number = Auth::user()->id . Str::random(8) . time();
+        $user_id = Auth::user()->id;
+
+        $transaction->transaction_number = $transaction_number;
+        $transaction->user_id = $user_id;
+        $transaction->save(); 
+
+        return redirect(route('transactions.show', ['transaction'=>$transaction->id]));
     }
 
     /**
@@ -46,7 +60,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return view('transactions.show')->with('transaction', $transaction);
     }
 
     /**

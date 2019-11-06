@@ -151,20 +151,20 @@ class ItemController extends Controller
                 $filepath = $file->storeAs('images', $new_file_name,'public');
 
                 // set the new image path as image value of product
-                $product->image = $filepath;
+                $item->image = $filepath;
             }
 
 
-            //== // 4. update
+             //  update attributes
             $item->name = $request->input('name');
-            $item->category_id = $request ('category');
-            $item->description = $request ('description');
+            $item->category_id = $request->input('category');
+            $item->description = $request->input('description');
 
             $item->save();
 
-        $request->session()->flash('item_message', 'Item Successfully Updated!');
+        $request->session()->flash('update_success', 'Item Successfully Updated!');
 
-          //== // 5. redirect user to view the newly created product
+          // redirect user to view the newly created product
         return redirect(route('items.show', ['item'=> $item->id]));
     }
 

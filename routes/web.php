@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('categories', 'CategoryController');
 Route::resource('items', 'ItemController');
+Route::resource('transactions', 'TransactionController');

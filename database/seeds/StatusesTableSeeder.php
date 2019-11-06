@@ -21,6 +21,10 @@ class StatusesTableSeeder extends Seeder
         ]);
 
         DB::table('statuses')->insert([
+            'name' => 'pending'
+        ]);
+
+        DB::table('statuses')->insert([
             'name' => 'approved'
         ]);
 
