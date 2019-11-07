@@ -23,12 +23,12 @@
 					<div class="col-12 col-md-3">
 						<div class="card w-100 h-100 shadow-lg p-3 mb-5 bg-white rounded">
 							<img src="{{ url('/public/'. $item->image) }}" class="card-img-top">
-
+							<h6><span class="badge badge-success float-right">Available</span></h6>
 							<div class="card-body">
 								<div class="pb-3">
 									<h4 class="card-title text-primary prod">{{$item->name}}</h4>
 								</div>
-										<p class="card-text mt-2 des">{{$item->description}}</p>  
+									<p class="card-text mt-2 des">{{$item->description}}</p>  
 							</div>
 							<div class="card-foot">
 								

@@ -53,17 +53,20 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('items.create')}}" class="nav-link">Create Units</a>
+                            <a href="{{route('items.create')}}" class="nav-link">Add Asset</a>
                         </li>
 
                         <li class="nav-item">
-                            <a href="{{route('items.index')}}" class="nav-link">Units</a>
+                            <a href="{{route('items.index')}}" class="nav-link">Assets</a>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a href="{{route('transactions.index')}}" class="nav-link">Transactions</a>
+                        </li>
                         @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+{{-- {{dd($items)}} --}}
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-6 mx-auto">
@@ -11,15 +11,17 @@
 				<hr>
 				<div class="card">
 					<img src="{{ url('/public/'. $items->image) }}" class="card-img-top view">
+					
 
+					<form action="{{route('transactions.store')}}" method="post">
 					<div class="card-body">
 							<h5><span class="badge badge-success float-right">Available</span></h5>
+							<input type="hidden" name="item_name" value="{{$items->id}}">
 							<h2 class="card-title">{{$items->name}}</h2>
 							<span class="text-primary font-weight-bold">Model Details:</span>
 							<p class="card-text">{{$items->description}}</p>
 					</div>
 					<div class="input-group mb-3">
-						<form action="{{route('transactions.store')}}" method="post" class="w-100">
 							<div class="form-group">
 								@csrf
 								@if(Session::has('transaction_message'))
@@ -55,8 +57,6 @@
 								 </div>
 							 @endif
 
-
-
 							<button type="submit" class="btn btn-success mt-5 w-100">Rent</button>
 						</form>
 
@@ -69,6 +69,7 @@
 						</form>
 						
 					</div>
+						
 				</div>
 			</div>
 		</div>

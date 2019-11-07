@@ -27,7 +27,7 @@
 				{{-- Start of table --}}
 				<table class="table  table-dark table-hover">
 					<th class="pl-5">Categories</th>
-					<th class="float-right mr-5">Action</th>
+					<th class="float-right ml-5">Action</th>
 					<tbody class="table-borderless">
 						@foreach($categories as $category)
 						{{-- {{dd($category)}} --}}
@@ -36,12 +36,14 @@
 									<strong class="float-left">{{$category->name}}</strong>
 								</td>
 								<td class="float-right">
-									<a href="{{route('categories.edit', ['category'=> $category->id])}}" class="btn btn-primary">Edit</a>
+									<a href="{{route('categories.edit', ['category'=> $category->id])}}" class="btn btn-primary"><small>Edit</small></a>
+								</td>
 
+								<td>
 									<form action="{{route('categories.destroy', ['category'=> $category->id])}}" method="post">
 										@csrf
 										@method("delete")
-										<button class="btn btn-danger">Delete</button>
+										<button class="btn btn-danger"><small>Delete</small></button>
 									</form>
 								</td>
 							</tr>

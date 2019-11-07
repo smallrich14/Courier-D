@@ -60,7 +60,7 @@ class TransactionController extends Controller
         $transaction = new Transaction;
         $transaction_number = Auth::user()->id . Str::random(8) . time();
         $user_id = Auth::user()->id;
-        $item_id = Auth::user()->id;
+        $item_id = $request->input('item_name');
         $borrow_date = $request->input('borrow');
         $return_date = $request->input('return');
 
@@ -132,6 +132,6 @@ class TransactionController extends Controller
 
         // echo "deleted";
 
-        return redirect(route('items.index'))->with('destroy_message', 'Transaction Deleted');
+        return redirect(route('items.index'))->with('destroy_message', 'Transaction Cancelled');
     }
 }

@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
-				<h3 class="text-center">Request Details</h3>
+				<h3 class="text-center">Pending Details</h3>
 				<hr>
 			</div>	
 		</div>
@@ -16,13 +16,14 @@
 					<table class="table  table-dark table-hover">
 						<th class="pl-5 text-warning">Transaction Number</th>
 						<th class="pl-5 text-warning">Unit Name</th>
-						<th class="pl-5 text-warning">Unit Details</th>
-						<th class="pl-5 text-warning">Barrow_Date</th>
+						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
 						<th class="float-right mr-5 text-warning">Status</th>
 						<tbody class="table-borderless">
-					
+
 						@foreach($transactions as $transaction)
+						{{-- {{dd($transaction->item->name)}} --}}
+				
 							<tr class="text-center">
 									<td scope="col">
 										<strong>{{$transaction->transaction_number}}</strong>
@@ -31,11 +32,7 @@
 									<td scope="col">
 										<strong>{{$transaction->item->name}}</strong>
 									</td>
-									
-									<td scope="col">
-										<strong>{{$transaction->item->description}}></strong>
-									</td>
-
+							
 									<td scope="col">
 										<strong>{{$transaction->borrow_date}}</strong>
 									</td>
@@ -64,9 +61,11 @@
 				        							@endforeach
 				        						</select>
 				        						<button class="badge badge-primary">Update</button>
-				        					</form>
+				        				</form>
 									</td>
-						@endforeach
+							@endforeach
+
+			
 							</tr>
 						</tbody>
 					</table>
@@ -90,8 +89,7 @@
 					<table class="table  table-dark table-hover">
 						<th class="pl-5 text-warning">Transaction Number</th>
 						<th class="pl-5 text-warning">Unit Name</th>
-						<th class="pl-5 text-warning">Unit Details</th>
-						<th class="pl-5 text-warning">Barrow_Date</th>
+						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
 						<th class="float-right mr-5 text-warning">Status</th>
 						<tbody class="table-borderless">
@@ -105,10 +103,6 @@
 									<td scope="col">
 										<strong>{{$transaction->item->name}}</strong>
 									</td>
-									
-									<td scope="col">
-										<strong>{{$transaction->item->description}}></strong>
-									</td>
 
 									<td scope="col">
 										<strong>{{$transaction->borrow_date}}</strong>
@@ -119,10 +113,16 @@
 									</td>
 
 									<td class="col float-right pl-5">
-										<button class="btn btn-success">Approved</button>
+										@if($transaction->status->name == "pending")
+											<span class="badge badge-warning">{{$transaction->status->name}}</span>
+										@elseif($transaction->status->name == "reject")
+											<span class="badge badge-danger">{{$transaction->status->name}}</span>
+										@else
+											<span class="badge badge-success">{{$transaction->status->name}}</span>
+										@endif
 									</td>
-								@endforeach
 							</tr>
+						@endforeach
 						</tbody>
 					</table>
 

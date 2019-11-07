@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
 				<h3 class="text-center">
-					Edit Units 
+					Edit Asset 
 				</h3>
 				<hr>
 				<form method="POST" action="{{ route('items.update', ['item' => $item->id]) }}" enctype="multipart/form-data">
@@ -71,7 +71,7 @@
 						</div>
 					@endif
 
-					<button class="btn btn-primary btn-block">Edit Item</button>
+					<button class="btn btn-primary btn-block">Update</button>
 
 				</form>
 			</div>

@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
-				<h3 class="jumbotron text-center bg-info text-light">{{isset($item) ? 'Edit Units' : 'Create New Units'}}</h3>
+				<h3 class="jumbotron text-center bg-info text-light">{{isset($item) ? 'Edit Asset' : 'Create New Asset'}}</h3>
 				<hr>
 				<form method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
 					@csrf
@@ -60,7 +60,7 @@
 						</div>
 					@endif
 
-					<button class="btn btn-primary btn-block">Add Units</button>
+					<button class="btn btn-primary btn-block">Add Asset</button>
 				</form>
 			</div>
 		</div>

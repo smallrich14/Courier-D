@@ -11,13 +11,12 @@
 		</div>
 
 		<div class="row">
-			<div class="col-12 col-md-12 mx-auto">
+			<div class="col-12 col-md-11 mx-auto">
 				<div class="table-responsive">
 					<table class="table  table-dark table-hover">
 						<th class="pl-5 text-warning">Transaction Number</th>
 						<th class="pl-5 text-warning">Unit Name</th>
-						<th class="pl-5 text-warning">Unit Details</th>
-						<th class="pl-5 text-warning">Barrow_Date</th>
+						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
 						<th class="pl-5 text-warning">Status</th>
 						<th class="pl-5 text-warning">Action</th>
@@ -25,18 +24,17 @@
 						<tbody class="table-borderless">
 					
 							<tr class="text-center">
-						{{-- {{dd($transactionss)}} --}}
-						{{-- {{dd($items)}} --}}
+						{{-- {{dd($transaction)}} --}}
+						@foreach($items as $item)
+							{{-- {{$item->name}}; --}}
+						@endforeach
+						
 									<td scope="col">
 										<strong>{{$transaction->transaction_number}}</strong>
 									</td>
 
 									<td scope="col">
-										<strong>{{$transaction->item->name}}</strong>
-									</td>
-									
-									<td scope="col">
-										<strong>{{$transaction->item->description}}></strong>
+										<strong>{{$item->name}}</strong>
 									</td>
 
 									<td scope="col">
@@ -48,7 +46,7 @@
 									</td>
 
 									<td class="col float-right pl-5">
-										<span class="badge badge-warning">Pending</span>
+										<button class="btn btn-warning">Pending</button>
 									</td>
 
 									<td class="col">
@@ -56,7 +54,7 @@
 											{{-- {{dd($transaction->id)}} --}}
 											@csrf
 											@method("delete")
-											<button class="btn btn-danger"><small>Delete Transaction</small></button>
+											<button class="btn btn-danger"><small>Cancel Transaction</small></button>
 										</form>
 									</td>
 							</tr>
@@ -82,8 +80,7 @@
 					<table class="table  table-dark table-hover">
 						<th class="pl-5 text-warning">Transaction Number</th>
 						<th class="pl-5 text-warning">Unit Name</th>
-						<th class="pl-5 text-warning">Unit Details</th>
-						<th class="pl-5 text-warning">Barrow_Date</th>
+						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
 						<th class="float-right mr-5 text-warning">Status</th>
 						<tbody class="table-borderless">
@@ -96,11 +93,7 @@
 									</td>
 
 									<td scope="col">
-										<strong>{{$transaction->item->name}}</strong>
-									</td>
-									
-									<td scope="col">
-										<strong>{{$transaction->item->description}}></strong>
+										<strong>{{$item->name}}</strong>
 									</td>
 
 									<td scope="col">
@@ -112,7 +105,13 @@
 									</td>
 
 									<td class="col float-right pl-5">
-										<button class="btn btn-success">Approved</button>
+										@if($transaction->status->name == "pending")
+											<span class="badge badge-warning">{{$transaction->status->name}}</span>
+										@elseif($transaction->status->name == "reject")
+											<span class="badge badge-danger">{{$transaction->status->name}}</span>
+										@else
+											<span class="badge badge-success">{{$transaction->status->name}}</span>
+										@endif
 									</td>
 							</tr>
 						</tbody>
