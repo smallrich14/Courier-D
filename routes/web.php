@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Route::delete('transaction/clear', 'TransactionController@clearTransaction')->name('transaction.clear');
+
 Route::resource('categories', 'CategoryController');
 Route::resource('items', 'ItemController');
 Route::resource('transactions', 'TransactionController');

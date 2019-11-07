@@ -59,6 +59,7 @@
 				        								{{ $status->id == $transaction->status_id ? "selected" : ""}}
 				        								>{{$status->name}}</option>
 				        							@endforeach
+
 				        						</select>
 				        						<button class="badge badge-primary">Update</button>
 				        				</form>

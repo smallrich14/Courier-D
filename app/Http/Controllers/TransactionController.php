@@ -51,11 +51,7 @@ class TransactionController extends Controller
             'borrow' => 'required',
             'return' => 'required'
         ]);
-
-        //   Transaction::create([
-        //     'borrow' => $request->input('borrow'),
-        //     'return' => $request->input('return'),
-        // ]);
+      
         // dd($request->all());
         $transaction = new Transaction;
         $transaction_number = Auth::user()->id . Str::random(8) . time();
@@ -134,4 +130,5 @@ class TransactionController extends Controller
 
         return redirect(route('items.index'))->with('destroy_message', 'Transaction Cancelled');
     }
+
 }
