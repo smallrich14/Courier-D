@@ -29,7 +29,7 @@ class CreateTransactionsTable extends Migration
                   ->onUpdate('cascade');
 
             // status_id
-            $table->unsignedBigInteger('status_id')->default(3);
+            $table->unsignedBigInteger('status_id')->default(1);
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('restrict')

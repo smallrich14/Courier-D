@@ -23,7 +23,7 @@
 					<div class="col-12 col-md-3">
 						<div class="card w-100 h-100 shadow-lg p-3 mb-5 bg-white rounded">
 							<img src="{{ url('/public/'. $item->image) }}" class="card-img-top">
-							<h6><span class="badge badge-success float-right">Available</span></h6>
+							<h6><span class="badge badge-success float-right">{{$item->isAvailable ? 'Available' : 'Not available' }}</span></h6>
 							<div class="card-body">
 								<div class="pb-3">
 									<h4 class="card-title text-primary prod">{{$item->name}}</h4>
@@ -36,7 +36,7 @@
 								<a href="{{route('items.show', ['item'=> $item->id])}}" class="btn btn-primary w-100 ">View</a>
 
 								{{-- edit item --}}
-							
+								@can('isAdmin')
 								<a href="{{route('items.edit', ['item'=> $item->id])}}" class="btn btn-warning w-100 my-1">Edit item</a>
 
 								{{-- delete form --}}
@@ -45,6 +45,7 @@
 									@method('DELETE')
 									<button class="btn btn-danger w-100">Delete Unit</button>
 								</form>
+								@endcan
 								
 							</div>
 						</div>

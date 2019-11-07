@@ -15,7 +15,7 @@
 
 					<form action="{{route('transactions.store')}}" method="post">
 					<div class="card-body">
-							<h5><span class="badge badge-success float-right">Available</span></h5>
+							<h5><span class="badge badge-success float-right">{{$items->isAvailable ? 'Available' : 'Not available'}}</span></h5>
 							<input type="hidden" name="item_name" value="{{$items->id}}">
 							<h2 class="card-title">{{$items->name}}</h2>
 							<span class="text-primary font-weight-bold">Model Details:</span>
@@ -56,10 +56,12 @@
 								 	<small class="mb-0">Date Required</small>
 								 </div>
 							 @endif
-
-							<button type="submit" class="btn btn-success mt-5 w-100">Rent</button>
+							 @if($items->isAvailable)
+								<button type="submit" class="btn btn-success mt-5 w-100">Rent</button>
+							 @endif
 						</form>
 
+						@can('isAdmin')
 						<a href="{{route('items.edit', ['item'=> $items->id])}}" class="btn btn-warning w-100 my-1">Edit Products</a>
 
 						<form action="{{route('items.destroy', ['item'=> $items->id])}}" method="post" class="w-100">
@@ -67,6 +69,7 @@
 							@method('DELETE')
 							<button class="btn btn-danger btn-block">Delete Product</button>
 						</form>
+						@endcan 
 						
 					</div>
 						

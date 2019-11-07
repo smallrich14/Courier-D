@@ -48,6 +48,7 @@
                             <a href="{{route('categories.index')}}" class="nav-link">View Categories</a>
                         </li>
 
+                        @can('isAdmin')
                         <li class="nav-item">
                             <a href="{{route('categories.create')}}" class="nav-link">Create Categories</a>
                         </li>
@@ -55,6 +56,7 @@
                         <li class="nav-item">
                             <a href="{{route('items.create')}}" class="nav-link">Add Asset</a>
                         </li>
+                        @endcan
 
                         <li class="nav-item">
                             <a href="{{route('items.index')}}" class="nav-link">Assets</a>

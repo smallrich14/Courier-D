@@ -28,7 +28,7 @@
 						@foreach($items as $item)
 							{{-- {{$item->name}}; --}}
 						@endforeach
-						
+							@if($transaction->status->name !== "approved" && $transaction->status->name !== "reject" )
 									<td scope="col">
 										<strong>{{$transaction->transaction_number}}</strong>
 									</td>
@@ -46,7 +46,7 @@
 									</td>
 
 									<td class="col float-right pl-5">
-										<button class="btn btn-warning">Pending</button>
+										<button class="btn btn-warning">{{$transaction->status->name}}</button>
 									</td>
 
 									<td class="col">
@@ -57,6 +57,7 @@
 											<button class="btn btn-danger"><small>Cancel Transaction</small></button>
 										</form>
 									</td>
+								@endif
 							</tr>
 						</tbody>
 					</table>
@@ -69,7 +70,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
-				<h3 class="text-center pt-5">Approved Details</h3>
+				<h3 class="text-center pt-5">Approval Status</h3>
 				<hr>
 			</div>	
 		</div>
@@ -88,6 +89,7 @@
 							<tr class="text-center">
 						{{-- {{dd($transactionss)}} --}}
 						{{-- {{dd($items)}} --}}
+						@if($transaction->status->name == "approved" || $transaction->status->name == "reject" )
 									<td scope="col">
 										<strong>{{$transaction->transaction_number}}</strong>
 									</td>
@@ -106,13 +108,14 @@
 
 									<td class="col float-right pl-5">
 										@if($transaction->status->name == "pending")
-											<span class="badge badge-warning">{{$transaction->status->name}}</span>
+											<button class="btn btn-warning">{{$transaction->status->name}}</button>
 										@elseif($transaction->status->name == "reject")
-											<span class="badge badge-danger">{{$transaction->status->name}}</span>
+											<button class="btn btn-danger">{{$transaction->status->name}}</button>
 										@else
-											<span class="badge badge-success">{{$transaction->status->name}}</span>
+											<button class="btn btn-success">{{$transaction->status->name}}</button>
 										@endif
 									</td>
+								@endif
 							</tr>
 						</tbody>
 					</table>

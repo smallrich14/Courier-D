@@ -17,9 +17,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Route::put('transactions/clear/{transaction}', 'TransactionController@clearTransaction')->name('transactions.clearTransaction');
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route::delete('transaction/clear', 'TransactionController@clearTransaction')->name('transaction.clear');
 
 Route::resource('categories', 'CategoryController');
 Route::resource('items', 'ItemController');

@@ -17,6 +17,7 @@ class CreateItemsTable extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->string('name');
+            $table->boolean('isAvailable')->default(true);
             $table->mediumText('description');
             $table->string('image');
             $table->unsignedBigInteger('category_id')->nullable(true);

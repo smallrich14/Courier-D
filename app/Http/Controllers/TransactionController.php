@@ -51,22 +51,27 @@ class TransactionController extends Controller
             'borrow' => 'required',
             'return' => 'required'
         ]);
+
+
       
         // dd($request->all());
         $transaction = new Transaction;
         $transaction_number = Auth::user()->id . Str::random(8) . time();
         $user_id = Auth::user()->id;
-        $item_id = $request->input('item_name');
         $borrow_date = $request->input('borrow');
         $return_date = $request->input('return');
 
         $transaction->transaction_number = $transaction_number;
         $transaction->user_id = $user_id;
+        $item_id = $request->input('item_name');
         $transaction->item_id = $item_id;
         $transaction->borrow_date = $borrow_date;
         $transaction->return_date = $return_date;
-        $transaction->save(); 
+        $transaction->save();
 
+        $item = Item::find($item_id);
+        $item->isAvailable = false;
+        $item->save();
         // dd($transaction);
         // $request->session()->flash('transaction_message', 'Successfully Requested!');
 

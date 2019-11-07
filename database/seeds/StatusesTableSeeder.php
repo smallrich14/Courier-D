@@ -12,13 +12,6 @@ class StatusesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('statuses')->insert([
-        	'name' => 'available'
-        ]);
-
-        DB::table('statuses')->insert([
-        	'name' => 'unavailable'
-        ]);
 
         DB::table('statuses')->insert([
             'name' => 'pending'
