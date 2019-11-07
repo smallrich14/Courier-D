@@ -13,4 +13,8 @@ class Item extends Model
     	return $this->belongsTo('App\Category');
     }
 
+    public function transaction() {
+    	return $this->hasMany('App\Transaction');
+    }
+
 }

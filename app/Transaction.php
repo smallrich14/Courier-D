@@ -17,10 +17,8 @@ class Transaction extends Model
     	return $this->belongsTo('App\User');
     }
 
-    public function items() {
-        return $this->belongsToMany('App\Item', 'transaction_items')
-            ->withPivot('borrow_date','return_date')
-            ->withTimestamps();
+    public function item() {
+        return $this->belongsTo('App\Item');
     }
 
 }

@@ -21,11 +21,12 @@ class TransactionController extends Controller
     public function index()
     {
         // $categories = Category::all();
+        $statuses = Status::all();
         $items = Item::all();
         $transactions = Transaction::all();
         // dd($items);
        
-        return view('transactions.index')->with('items', $items)->with('transactions', $transactions);
+        return view('transactions.index')->with('items', $items)->with('transactions', $transactions)->with('statuses', $statuses);
     }
 
     /**
@@ -59,11 +60,13 @@ class TransactionController extends Controller
         $transaction = new Transaction;
         $transaction_number = Auth::user()->id . Str::random(8) . time();
         $user_id = Auth::user()->id;
+        $item_id = Auth::user()->id;
         $borrow_date = $request->input('borrow');
         $return_date = $request->input('return');
 
         $transaction->transaction_number = $transaction_number;
         $transaction->user_id = $user_id;
+        $transaction->item_id = $item_id;
         $transaction->borrow_date = $borrow_date;
         $transaction->return_date = $return_date;
         $transaction->save(); 
@@ -83,10 +86,9 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         $items = Item::all();
-        $transactions = Transaction::all();
-        // dd($transaction);
-
-        return view('transactions.show')->with('transactions', $transactions)->with('items', $items);
+        // dd($transaction->item->name);
+        // echo "im here";
+        return view('transactions.show')->with('transaction', $transaction)->with('items', $items);
     }
 
     /**
@@ -109,7 +111,13 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $transaction->status_id = $request->input('status');
+        // dd($request->input('status'));
+        $transaction->save();
+
+        // echo "hey";
+        return redirect(route('transactions.index'))
+        ->with('updated_transaction', $transaction->id);
     }
 
     /**
@@ -120,6 +128,10 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+
+        // echo "deleted";
+
+        return redirect(route('items.index'))->with('destroy_message', 'Transaction Deleted');
     }
 }

@@ -29,11 +29,18 @@ class CreateTransactionsTable extends Migration
                   ->onUpdate('cascade');
 
             // status_id
-            $table->unsignedBigInteger('status_id')->default(1);
+            $table->unsignedBigInteger('status_id')->default(3);
             $table->foreign('status_id')
                   ->references('id')->on('statuses')
                   ->onDelete('restrict')
                   ->onUpdate('cascade');
+
+            // item id
+            $table->unSignedBigInteger('item_id');
+            $table->foreign('item_id')
+                ->references('id')->on('items')
+                ->onDelete('restrict')
+                ->onUpdate('cascade');
 
             $table->softDeletes();
         });
