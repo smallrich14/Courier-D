@@ -14,7 +14,7 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Item $item)
     {
         $items = Item::all();
         return view('items.index')->with('items', $items);
@@ -25,8 +25,9 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Item $item)
     {
+        $this->authorize('view', $item);
         $categories = Category::all();
         return view('items.create')->with('categories', $categories);
     }
@@ -37,8 +38,9 @@ class ItemController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Item $item)
     {
+        $this->authorize('view', $item);
         $request->validate([
             'name' => 'required|string',
             'category' => 'required',
@@ -104,6 +106,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
+        $this->authorize('view', $item);
         $categories = Category::all();
         return view('items.edit')->with('item', $item)->with('categories', $categories);
     }
@@ -117,6 +120,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
+        $this->authorize('view', $item);
         $request->validate([
             'name' => 'required|string',
             'category' => 'required',
@@ -178,6 +182,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
+        $this->authorize('view', $item);
         $item->delete();
 
         return redirect(route('items.index'))->with('destroy_message', 'Unit Deleted');

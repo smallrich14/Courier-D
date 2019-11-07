@@ -18,9 +18,10 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Transaction $transaction)
     {
         // $categories = Category::all();
+        $this->authorize->('view', $transaction);
         $statuses = Status::all();
         $items = Item::all();
         $transactions = Transaction::all();
@@ -36,7 +37,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        //
+         $this->authorize->('view', $transaction);
     }
 
     /**
@@ -47,6 +48,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
+         $this->authorize->('view', $transaction);
          $request->validate([
             'borrow' => 'required',
             'return' => 'required'
@@ -100,7 +102,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+         $this->authorize->('view', $transaction);
     }
 
     /**
@@ -112,8 +114,19 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        $transaction->status_id = $request->input('status');
+         $this->authorize->('view', $transaction);
+        $item_id = $transaction->item_id;
+        
+        if($request->input('status') == 4) {
+            $item = Item::find($item_id);
+            $item->isAvailable = true;
+            $item->save();
+        }
+
+        // $transaction->status_id = $request->input('item_id');
         // dd($request->input('status'));
+        $transaction->status_id = $request->input('status');
+
         $transaction->save();
 
         // echo "hey";
@@ -129,6 +142,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
+         $this->authorize->('view', $transaction);
         $transaction->delete();
 
         // echo "deleted";

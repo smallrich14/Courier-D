@@ -56,9 +56,11 @@
 								 	<small class="mb-0">Date Required</small>
 								 </div>
 							 @endif
+							 @cannot('isAdmin')
 							 @if($items->isAvailable)
 								<button type="submit" class="btn btn-success mt-5 w-100">Rent</button>
 							 @endif
+							 @endcannot
 						</form>
 
 						@can('isAdmin')

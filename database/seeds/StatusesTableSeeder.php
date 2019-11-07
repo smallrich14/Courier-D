@@ -24,5 +24,9 @@ class StatusesTableSeeder extends Seeder
         DB::table('statuses')->insert([
             'name' => 'reject'
         ]);
+
+        DB::table('statuses')->insert([
+            'name' => 'returned'
+        ]);
     }
 }

@@ -22,7 +22,7 @@
 
 						@foreach($transactions as $transaction)
 						{{-- {{dd($transaction)}} --}}
-							@if($transaction->status->name !== "approved" && $transaction->status->name !== "reject" )
+							@if($transaction->status->name == "pending")
 				
 							<tr class="text-center">
 									<td scope="col">
@@ -114,8 +114,12 @@
 									</td>
 
 									<td class="col float-right pl-5">
-
+										<form action="{{ route('transactions.update', ['transaction' => $transaction->id]) }}" method="post">
+											@csrf
+											@method('put')
+											<input type="hidden" name="status" value="4">
 										<button class="btn btn-success">Tag as Returned</button>
+										</form>
 									</td>
 							</tr>
 							@endif
@@ -149,7 +153,7 @@
 						<tbody class="table-borderless">
 						
 						@foreach($transactions as $transaction)
-						@if($transaction->status->name == 'approved')
+						@if($transaction->status->name == 'returned')
 							<tr class="text-center">
 									<td scope="col">
 										<strong>{{$transaction->transaction_number}}</strong>

@@ -12,8 +12,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Category $category)
     {
+        $this->authorize('view', $category);
         $categories = Category::all();
         // dd($categories);
 
@@ -25,8 +26,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Category $category)
     {
+        $this->authorize('view', $category);
         return view('categories.create');
     }
 
@@ -36,8 +38,9 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Category $category)
     {
+        $this->authorize('view', $category);
          //validation for categories 
         $request->validate([
             'category' => 'required|string|unique:categories,name'
@@ -64,7 +67,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $this->authorize('view', $category);
     }
 
     /**
@@ -75,6 +78,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
+        $this->authorize('view', $category);
         return view('categories.create')->with('category', $category);
     }
 
@@ -87,6 +91,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        $this->authorize('view', $category);
          
         $request->validate([
             'category' => 'required|string|unique:categories,name'
@@ -110,6 +115,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
+        $this->authorize('view', $category);
         $category->delete();
 
         return redirect(route('categories.index'))->with('destroy_message', 'Product Deleted');

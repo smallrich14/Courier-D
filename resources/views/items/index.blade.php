@@ -20,10 +20,12 @@
 			{{-- <div class="col-12 col-md-8"> --}}
 				{{-- {{dd($items)}} --}}
 				@foreach($items as $item)
-					<div class="col-12 col-md-3">
-						<div class="card w-100 h-100 shadow-lg p-3 mb-5 bg-white rounded">
-							<img src="{{ url('/public/'. $item->image) }}" class="card-img-top">
-							<h6><span class="badge badge-success float-right">{{$item->isAvailable ? 'Available' : 'Not available' }}</span></h6>
+					<div class="col-12 col-md-4 mb-5">
+						<div class="card w-100 h-100 shadow-lg p-3 bg-white rounded">
+							<img src="{{ url('/public/'. $item->image) }}" class="card-img-top imgIndex">
+
+							<h6 class="mt-2"><span class="badge badge-success float-right">{{$item->isAvailable ? 'Available' : 'Not available' }}</span></h6>
+							
 							<div class="card-body">
 								<div class="pb-3">
 									<h4 class="card-title text-primary prod">{{$item->name}}</h4>
