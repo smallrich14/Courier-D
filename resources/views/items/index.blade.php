@@ -23,8 +23,13 @@
 					<div class="col-12 col-md-4 mb-5">
 						<div class="card w-100 h-100 shadow-lg p-3 bg-white rounded">
 							<img src="{{ url('/public/'. $item->image) }}" class="card-img-top imgIndex">
+							@if($item->isAvailable == 1)
+								<h6><span class="badge badge-success mt-2 float-right">{{$item->isAvailable ? 'Available' : 'Not available' }}</span></h6>
+							@else
+								<h6><span class="badge badge-danger mt-2 float-right">{{$item->isAvailable ? 'Available' : 'Not available' }}</span></h6>
+							@endif
 
-							<h6 class="mt-2"><span class="badge badge-success float-right">{{$item->isAvailable ? 'Available' : 'Not available' }}</span></h6>
+							{{-- <h6 class="mt-2"><span class="badge badge-success float-right"></span></h6> --}}
 							
 							<div class="card-body">
 								<div class="pb-3">

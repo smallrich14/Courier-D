@@ -43,10 +43,6 @@
 									{{-- {{dd($statuses)}} --}}
 									<td class="col float-right pl-5">
 							
-										{{-- @if(Session::has('updated_transaction') && Session::get('updated_transaction') == $transaction->id) --}}
-										
-										{{-- @endif --}}
-										
 										<form action="{{ route('transactions.update', ['transaction' => $transaction->id]) }}" method="post">
 				        						@csrf
 				        						@method('PUT')
@@ -77,7 +73,6 @@
 		</div>
 	</div>
 
-@can('isAdmin')
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
@@ -117,12 +112,17 @@
 									</td>
 
 									<td class="col float-right pl-5">
+										@can('isAdmin')
 										<form action="{{ route('transactions.update', ['transaction' => $transaction->id]) }}" method="post">
 											@csrf
 											@method('put')
 											<input type="hidden" name="status" value="4">
-										<button class="btn btn-success">Tag as Returned</button>
+										<button class="btn btn-info">Tag as Returned</button>
 										</form>
+										@endcan
+										@cannot('isAdmin')
+										<span class="badge badge-success">{{$transaction->status->name}}</span>
+										@endcannot
 									</td>
 							</tr>
 							@endif
@@ -134,7 +134,6 @@
 			</div>
 		</div>
 	</div>
-@endcan
 
 		<div class="container">
 		<div class="row">

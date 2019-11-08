@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use App\Item;
 
 class CategoryController extends Controller
 {
@@ -14,11 +15,12 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
+        $items = Item::all();
         // $this->authorize('view', $category);
         $categories = Category::all();
         // dd($categories);
 
-        return view('categories.index')->with('categories', $categories);
+        return view('categories.index')->with('categories', $categories)->with('items', $items);
     }
 
     /**
@@ -68,6 +70,8 @@ class CategoryController extends Controller
     public function show(Category $category)
     {
         $this->authorize('view', $category);
+
+        return view('category.index');
     }
 
     /**

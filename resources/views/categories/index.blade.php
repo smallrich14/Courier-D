@@ -31,9 +31,11 @@
 					<th class="float-right ml-5">Action</th>
 					@endcan
 					<tbody class="table-borderless">
+						{{-- @foreach($items as $item) --}}
 						@foreach($categories as $category)
 						{{-- {{dd($category)}} --}}
 							<tr>
+								{{-- @if($item->category_id == $category->id) --}}
 								<td scope="col">
 									<strong class="float-left">{{$category->name}}</strong>
 								</td>
@@ -50,7 +52,9 @@
 									</form>
 									@endcan
 								</td>
+								{{-- @endif --}}
 							</tr>
+						{{-- @endforeach --}}
 						@endforeach
 					</tbody>
 				</table>

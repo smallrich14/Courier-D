@@ -89,12 +89,12 @@ class TransactionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Transaction  $transaction  
      * @return \Illuminate\Http\Response
      */
     public function show(Transaction $transaction)
     {
-        $this->authorize('view', $transaction);
+        // $this->authorize('view', $transaction);
         $items = Item::all();
         // dd($transaction->item->name);
         // echo "im here";
