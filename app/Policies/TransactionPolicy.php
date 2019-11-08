@@ -18,7 +18,7 @@ class TransactionPolicy
      */
     public function viewAny(User $user)
     {
-         return $user->role_id === 1 || $user->role_id === 2;
+        //
     }
 
     /**
@@ -41,7 +41,7 @@ class TransactionPolicy
      */
     public function create(User $user)
     {
-        return $user->role_id === 1;
+        // return $user->role_id === 1;
     }
 
     /**
@@ -53,7 +53,7 @@ class TransactionPolicy
      */
     public function update(User $user, Transaction $transaction)
     {
-        return $user->role_id === 1;
+        // return $user->role_id === 1;
     }
 
     /**
@@ -65,7 +65,7 @@ class TransactionPolicy
      */
     public function delete(User $user, Transaction $transaction)
     {
-        return $user->role_id === 1;
+        // return $user->role_id === 1;
     }
 
     /**
@@ -77,7 +77,7 @@ class TransactionPolicy
      */
     public function restore(User $user, Transaction $transaction)
     {
-        return $user->role_id === 1;
+        // return $user->role_id === 1;
     }
 
     /**
@@ -89,6 +89,6 @@ class TransactionPolicy
      */
     public function forceDelete(User $user, Transaction $transaction)
     {
-        return $user->role_id === 1;
+        // return $user->role_id === 1;
     }
 }

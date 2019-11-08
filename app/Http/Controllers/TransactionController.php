@@ -21,10 +21,16 @@ class TransactionController extends Controller
     public function index(Transaction $transaction)
     {
         // $categories = Category::all();
-        $this->authorize->('view', $transaction);
+      
         $statuses = Status::all();
         $items = Item::all();
-        $transactions = Transaction::all();
+
+        if(Auth::user()->role_id === 1){
+            $transactions = Transaction::all();
+        }else{
+            $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+        }
+        
         // dd($items);
        
         return view('transactions.index')->with('items', $items)->with('transactions', $transactions)->with('statuses', $statuses);
@@ -37,7 +43,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-         $this->authorize->('view', $transaction);
+         
     }
 
     /**
@@ -48,7 +54,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-         $this->authorize->('view', $transaction);
+       
          $request->validate([
             'borrow' => 'required',
             'return' => 'required'
@@ -88,6 +94,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
+        $this->authorize('view', $transaction);
         $items = Item::all();
         // dd($transaction->item->name);
         // echo "im here";
@@ -102,7 +109,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-         $this->authorize->('view', $transaction);
+         
     }
 
     /**
@@ -114,7 +121,6 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-         $this->authorize->('view', $transaction);
         $item_id = $transaction->item_id;
         
         if($request->input('status') == 4) {
@@ -142,7 +148,6 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-         $this->authorize->('view', $transaction);
         $transaction->delete();
 
         // echo "deleted";

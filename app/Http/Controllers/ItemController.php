@@ -27,7 +27,7 @@ class ItemController extends Controller
      */
     public function create(Item $item)
     {
-        $this->authorize('view', $item);
+        $this->authorize('create', $item);
         $categories = Category::all();
         return view('items.create')->with('categories', $categories);
     }
@@ -40,7 +40,7 @@ class ItemController extends Controller
      */
     public function store(Request $request, Item $item)
     {
-        $this->authorize('view', $item);
+        $this->authorize('create', $item);
         $request->validate([
             'name' => 'required|string',
             'category' => 'required',
@@ -106,7 +106,7 @@ class ItemController extends Controller
      */
     public function edit(Item $item)
     {
-        $this->authorize('view', $item);
+        $this->authorize('update', $item);
         $categories = Category::all();
         return view('items.edit')->with('item', $item)->with('categories', $categories);
     }
@@ -120,7 +120,7 @@ class ItemController extends Controller
      */
     public function update(Request $request, Item $item)
     {
-        $this->authorize('view', $item);
+        $this->authorize('update', $item);
         $request->validate([
             'name' => 'required|string',
             'category' => 'required',
@@ -182,7 +182,7 @@ class ItemController extends Controller
      */
     public function destroy(Item $item)
     {
-        $this->authorize('view', $item);
+        $this->authorize('delete', $item);
         $item->delete();
 
         return redirect(route('items.index'))->with('destroy_message', 'Unit Deleted');

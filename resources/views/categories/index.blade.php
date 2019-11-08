@@ -27,7 +27,9 @@
 				{{-- Start of table --}}
 				<table class="table  table-dark table-hover">
 					<th class="pl-5">Categories</th>
+					@can('isAdmin')
 					<th class="float-right ml-5">Action</th>
+					@endcan
 					<tbody class="table-borderless">
 						@foreach($categories as $category)
 						{{-- {{dd($category)}} --}}
@@ -36,6 +38,7 @@
 									<strong class="float-left">{{$category->name}}</strong>
 								</td>
 								<td class="float-right">
+									@can('isAdmin')
 									<a href="{{route('categories.edit', ['category'=> $category->id])}}" class="btn btn-primary"><small>Edit</small></a>
 								</td>
 
@@ -45,6 +48,7 @@
 										@method("delete")
 										<button class="btn btn-danger"><small>Delete</small></button>
 									</form>
+									@endcan
 								</td>
 							</tr>
 						@endforeach

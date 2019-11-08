@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index(Category $category)
     {
-        $this->authorize('view', $category);
+        // $this->authorize('view', $category);
         $categories = Category::all();
         // dd($categories);
 
@@ -28,7 +28,7 @@ class CategoryController extends Controller
      */
     public function create(Category $category)
     {
-        $this->authorize('view', $category);
+        $this->authorize('create', $category);
         return view('categories.create');
     }
 
@@ -40,7 +40,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request, Category $category)
     {
-        $this->authorize('view', $category);
+        $this->authorize('create', $category);
          //validation for categories 
         $request->validate([
             'category' => 'required|string|unique:categories,name'
@@ -78,7 +78,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $this->authorize('view', $category);
+        $this->authorize('update', $category);
         return view('categories.create')->with('category', $category);
     }
 
@@ -91,7 +91,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $this->authorize('view', $category);
+        $this->authorize('update', $category);
          
         $request->validate([
             'category' => 'required|string|unique:categories,name'
@@ -115,7 +115,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $this->authorize('view', $category);
+        $this->authorize('delete', $category);
         $category->delete();
 
         return redirect(route('categories.index'))->with('destroy_message', 'Product Deleted');

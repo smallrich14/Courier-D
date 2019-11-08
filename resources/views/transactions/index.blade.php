@@ -46,6 +46,7 @@
 										{{-- @if(Session::has('updated_transaction') && Session::get('updated_transaction') == $transaction->id) --}}
 										
 										{{-- @endif --}}
+										
 										<form action="{{ route('transactions.update', ['transaction' => $transaction->id]) }}" method="post">
 				        						@csrf
 				        						@method('PUT')
@@ -61,7 +62,9 @@
 				        								>{{$status->name}}</option>
 				        							@endforeach
 				        						</select>
+				        						@can('isAdmin')
 				        						<button class="badge badge-primary">Update</button>
+				        						@endcan
 				        				</form>
 									</td>
 							@endif
@@ -74,7 +77,7 @@
 		</div>
 	</div>
 
-
+@can('isAdmin')
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
@@ -131,7 +134,7 @@
 			</div>
 		</div>
 	</div>
-
+@endcan
 
 		<div class="container">
 		<div class="row">
@@ -172,7 +175,7 @@
 									</td>
 
 									<td class="col float-right pl-5">
-										<button class="btn btn-success">{{$transaction->status->name}}</button>
+										<span class="badge badge-success">{{$transaction->status->name}}</span>
 									</td>
 							</tr>
 							@endif
@@ -185,7 +188,7 @@
 		</div>
 	</div>
 
-
+@can('isAdmin')
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
@@ -227,9 +230,9 @@
 										@if($transaction->status->name == "cancelled")
 											<button class="btn btn-warning">{{$transaction->status->name}}</button>
 										@elseif($transaction->status->name == "reject")
-											<button class="btn btn-danger">{{$transaction->status->name}}</button>
+											<span class="badge badge-danger">{{$transaction->status->name}}</span>
 										@else
-											<button class="btn btn-danger">{{$transaction->status->name}}</button>
+											<button class="badge badge-danger">{{$transaction->status->name}}</button>
 										@endif
 									</td>
 							</tr>
@@ -242,5 +245,5 @@
 			</div>
 		</div>
 	</div>
-
+@endcan
 @endsection

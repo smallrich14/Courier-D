@@ -1,4 +1,4 @@
-@extends('layouts.app')
+span@extends('layouts.app')
 
 @section('content')
 
@@ -46,7 +46,7 @@
 									</td>
 
 									<td class="col float-right pl-5">
-										<button class="btn btn-warning">{{$transaction->status->name}}</button>
+										<span class="badge badge-warning">{{$transaction->status->name}}</span>
 									</td>
 
 									<td class="col">
@@ -110,7 +110,7 @@
 										@if($transaction->status->name == "pending")
 											<button class="btn btn-warning">{{$transaction->status->name}}</button>
 										@elseif($transaction->status->name == "reject")
-											<button class="btn btn-danger">{{$transaction->status->name}}</button>
+											<span class="badge badge-danger">{{$transaction->status->name}}</span>
 										@else
 											<button class="btn btn-success">{{$transaction->status->name}}</button>
 										@endif
