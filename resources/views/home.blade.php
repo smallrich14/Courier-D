@@ -14,8 +14,14 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Welcome You are logged in!
                 </div>
+
+                <div class="container-fluid">
+                    <div></div>
+                </div>
+
+            
             </div>
         </div>
     </div>

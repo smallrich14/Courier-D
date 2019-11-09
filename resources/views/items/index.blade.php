@@ -8,11 +8,11 @@
 		</div>
 	@endif
 
-	<div class="container">
+	<div class="container shadow">
 		<div class="row">
 			<div class="col-12">
-				<div class="jumbotron bg-warning">
-					<h1 class="text-center">Looking for a Ride?</h1>
+				<div class="jumbotron">
+					<h1 class="text-center h1">Looking for a Ride?</h1>
 				</div>
 			</div>
 		</div>
@@ -20,7 +20,7 @@
 			{{-- <div class="col-12 col-md-8"> --}}
 				{{-- {{dd($items)}} --}}
 				@foreach($items as $item)
-					<div class="col-12 col-md-4 mb-5">
+					<div class="col-12 col-md-6 mb-5">
 						<div class="card w-100 h-100 shadow-lg p-3 bg-white rounded">
 							<img src="{{ url('/public/'. $item->image) }}" class="card-img-top imgIndex">
 							@if($item->isAvailable == 1)

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- {{dd($items)}} --}}
+{{-- {{dd($items)}} --}} 
+
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-6 mx-auto">
@@ -12,7 +13,6 @@
 				<div class="card">
 					<img src="{{ url('/public/'. $items->image) }}" class="card-img-top view">
 					
-
 					<form action="{{route('transactions.store')}}" method="post">
 					<div class="card-body">
 							<h5><span class="badge badge-success float-right">{{$items->isAvailable ? 'Available' : 'Not available'}}</span></h5>
@@ -22,7 +22,7 @@
 							<p class="card-text">{{$items->description}}</p>
 					</div>
 					<div class="input-group mb-3">
-							<div class="form-group">
+							<div class="form-group w-100">
 								@csrf
 								@if(Session::has('transaction_message'))
 								<div class="alert alert-success">
@@ -34,7 +34,7 @@
 								<label for="request_date"></label>
 								{{-- calendar --}}
 								<div class="form-group">
-								    <a class="btn btn-info ml-4">Borrow Date:</a>
+								    <p class="ml-2 text-info">Borrow Date:</p>
 								    <input type="date" name="borrow" id="borrow" class="form-control"/>
 								 </div>
 
@@ -45,7 +45,7 @@
 								 @endif
 
 								<div class="form-group">
-								    <a class="btn btn-info ml-4">Return Date:</a>
+								    <p class="ml-2 text-info">Return Date:</p>
 								    <input type="date" name="return" id="return" class="form-control"/>
 								</div>
 								{{-- end of calendar --}}

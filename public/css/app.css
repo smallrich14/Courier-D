@@ -1,4 +1,43 @@
 .imgIndex{
-	width: 320px;
-	height: 250px;
+	width: 100%;
+	height: 300px;
+}
+
+.view {
+	width: 100%;
+	height: 400px;
+}
+
+nav {
+	font-family: 'Rokkitt', serif;
+}
+
+p{
+	font-family: 'Julius Sans One', sans-serif;
+}
+
+.jumbotron {
+	background-image: url('../public/images/cover.png');
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    font-family: 'Rokkitt', serif;
+}
+
+.h1 {
+	font-size: 70px;
+	 text-shadow: 2px 4px #fff;
+}
+
+.card {
+	border-style: none;
+}
+
+.float-left {
+	font-size: 25px;
+	font-family: 'Julius Sans One', sans-serif;
+}
+
+.titleCategory {
+	font-family: 'Rokkitt', serif;
 }

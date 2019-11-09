@@ -6,6 +6,7 @@ use App\Item;
 use Illuminate\Http\Request;
 use App\Category;
 use Str;
+use DB;
 
 class ItemController extends Controller
 {
@@ -187,4 +188,5 @@ class ItemController extends Controller
 
         return redirect(route('items.index'))->with('destroy_message', 'Unit Deleted');
     }
+
 }

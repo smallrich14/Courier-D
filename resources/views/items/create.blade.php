@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
-				<h3 class="jumbotron text-center bg-info text-light">{{isset($item) ? 'Edit Asset' : 'Create New Asset'}}</h3>
+				<h3 class="jumbotron text-center display-4">{{isset($item) ? 'Edit Asset' : 'Create New Asset'}}</h3>
 				<hr>
 				<form method="post" action="{{ route('items.store') }}" enctype="multipart/form-data">
 					@csrf
@@ -19,18 +19,18 @@
 				@endif
 					{{-- input for Unit name --}}
 					<div class="form-group">
-						<label type="text" name="name" class="form-control" id="name">Unit Name:</label>
+						<h4>Asset Name:</h4>
 						<input type="text" name="name" class="form-control" id="name">
 					</div>
 					@if($errors->has('name'))
 						<div class="alert alert-danger">
-							<small class="mb-0">Unit name Required</small>
+							<small class="mb-0">Asset name Required</small>
 						</div>
 					@endif
 
 					{{-- input for Category --}}
 					<div class="form-group">
-						<label name="category" class="form-control" id="category">Category:</label>
+						<h4>Category:</h4>
 						<select class="form-control" id="category" name="category">
 							@foreach($categories as $category)
 								<option value="{{$category->id}}">{{$category->name}}</option>
@@ -40,7 +40,7 @@
 
 					{{-- input for image --}}
 					<div class="form-group">
-						<label class="image">Unit Image:</label>
+						<label class="image">Asset Image:</label>
 						<input type="file" name="image" class="form-control-file" id="image">
 					</div>
 					@if($errors->has('image'))
@@ -51,7 +51,7 @@
 
 					{{-- input for description --}}
 					<div class="form-group">
-						<label class="image">Description:</label>
+						<h4>Description:</h4>
 						<textarea id="description" name="description" class="form-control" id="description" cols="30" rows="10"></textarea>
 					</div>
 					@if($errors->has('description'))

@@ -11,11 +11,6 @@
 					{{Session::get('category_message')}}
 				</div>
 				@endif
-				@if($errors->any())
-					<div class="alert alert-danger">
-						{{$errors->first()}}
-					</div>
-				@endif
 				{{-- delete alert --}}
 				@if(Session::has('destroy_message'))
 				<div class="alert alert-success">
@@ -23,12 +18,12 @@
 				</div>
 				@endif
 
-				<h2 class="text-center">Categories</h2>
+				<h2 class="text-center titleCategory display-4">Categories</h2>
 				{{-- Start of table --}}
 				<table class="table  table-dark table-hover">
-					<th class="pl-5">Categories</th>
+					<th class="pl-5 text-warning">Categories</th>
 					@can('isAdmin')
-					<th class="float-right ml-5">Action</th>
+					<th class="float-right ml-5 text-warning">Action</th>
 					@endcan
 					<tbody class="table-borderless">
 						{{-- @foreach($items as $item) --}}
@@ -61,6 +56,8 @@
 
 
 			</div>	
+
+			
 		</div>
 	</div>
 

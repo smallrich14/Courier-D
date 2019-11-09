@@ -15,9 +15,14 @@
 					@method('put')
 					@endif
 				@if(Session::has('category_message'))
-				<div class="alert alert-success">
-					{{Session::get('category_message')}}
-				</div>
+					<div class="alert alert-success">
+						{{Session::get('category_message')}}
+					</div>
+				@endif
+				@if($errors->has('category'))
+					<div class="alert alert-danger">
+						<small class="mb-0">Category Required</small>
+					</div>
 				@endif
 					<div class="form-group text-center">
 						<label for="category" >New Category</label>
