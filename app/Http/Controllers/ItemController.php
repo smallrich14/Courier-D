@@ -15,10 +15,18 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Item $item)
+    public function index(Request $request)
     {
-        $items = Item::all();
-        return view('items.index')->with('items', $items);
+        $categories = Category::all();
+
+        // dd($request->query('category')); filter category
+        if($request->query('category')){
+            $items = Item::all()->where('category_id', $request->query('category'));
+        }else {
+            $items = Item::all();
+        }
+
+        return view('items.index')->with('items', $items)->with('categories', $categories);
     }
 
     /**

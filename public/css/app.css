@@ -8,12 +8,12 @@
 	height: 400px;
 }
 
-nav {
+* {
 	font-family: 'Rokkitt', serif;
 }
 
-p{
-	font-family: 'Julius Sans One', sans-serif;
+p {
+	font-family: 'PT Sans', sans-serif;
 }
 
 .jumbotron {
@@ -21,7 +21,6 @@ p{
 	background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
-    font-family: 'Rokkitt', serif;
 }
 
 .h1 {
@@ -35,9 +34,20 @@ p{
 
 .float-left {
 	font-size: 25px;
-	font-family: 'Julius Sans One', sans-serif;
+	font-family: 'PT Sans', sans-serif;
 }
 
-.titleCategory {
-	font-family: 'Rokkitt', serif;
+.badge {
+	letter-spacing: 0.1em;
 }
+
+th {
+	letter-spacing: 0.1em;
+	font-size: 18px;
+}
+
+strong {
+	font-family: 'PT Sans', sans-serif;
+	letter-spacing: 0.1em;
+}
+

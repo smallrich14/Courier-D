@@ -48,14 +48,14 @@
 								    <p class="ml-2 text-info">Return Date:</p>
 								    <input type="date" name="return" id="return" class="form-control"/>
 								</div>
-								{{-- end of calendar --}}
-							</div>
-							
+								
 							 @if($errors->has('return'))
 								 <div class="alert alert-danger">
 								 	<small class="mb-0">Date Required</small>
 								 </div>
 							 @endif
+							</div> {{-- end of calendar --}}
+							
 							 @cannot('isAdmin')
 							 @if($items->isAvailable)
 								<button type="submit" class="btn btn-success mt-5 w-100">Rent</button>

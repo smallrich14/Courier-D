@@ -17,7 +17,7 @@
 						<th class="pl-5 text-warning">Unit Name</th>
 						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
-						<th class="float-right mr-5 text-warning">Status</th>
+						<th class="float-right ml-3 text-warning">Status</th>
 						<tbody class="table-borderless">
 
 						@foreach($transactions as $transaction)
@@ -46,7 +46,6 @@
 										<form action="{{ route('transactions.update', ['transaction' => $transaction->id]) }}" method="post">
 				        						@csrf
 				        						@method('PUT')
-				        						{{-- <label for="edit-transaction-{{$transaction->id}}"></label> --}}
 				        						<input type="hidden" name="item_id" value="{{$transaction->item_id}}">
 				        						<select class="custom-select mb-1" id="edit-transaction-{{$transaction->id}}" name="status">
 				        							@foreach($statuses as $status)
@@ -89,7 +88,7 @@
 						<th class="pl-5 text-warning">Unit Name</th>
 						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
-						<th class="float-right mr-5 text-warning">Status</th>
+						<th class="float-right ml-3 text-warning">Status</th>
 						<tbody class="table-borderless">
 						
 						@foreach($transactions as $transaction)
@@ -151,7 +150,7 @@
 						<th class="pl-5 text-warning">Unit Name</th>
 						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
-						<th class="float-right mr-5 text-warning">Status</th>
+						<th class="float-right ml-3 text-warning">Status</th>
 						<tbody class="table-borderless">
 						
 						@foreach($transactions as $transaction)
@@ -187,7 +186,6 @@
 		</div>
 	</div>
 
-@can('isAdmin')
 	<div class="container">
 		<div class="row">
 			<div class="col-12 col-md-8 mx-auto">
@@ -203,7 +201,7 @@
 						<th class="pl-5 text-warning">Unit Name</th>
 						<th class="pl-5 text-warning">Borrow_Date</th>
 						<th class="pl-5 text-warning">Return_Date</th>
-						<th class="float-right mr-5 text-warning">Status</th>
+						<th class="float-right ml-3 text-warning">Status</th>
 						<tbody class="table-borderless">
 						
 						@foreach($transactions as $transaction)
@@ -244,5 +242,4 @@
 			</div>
 		</div>
 	</div>
-@endcan
 @endsection

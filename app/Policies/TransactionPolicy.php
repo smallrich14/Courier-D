@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 namespace App\Policies;
 
@@ -18,7 +18,7 @@ class TransactionPolicy
      */
     public function viewAny(User $user)
     {
-        //
+         // 
     }
 
     /**
@@ -30,7 +30,7 @@ class TransactionPolicy
      */
     public function view(User $user, Transaction $transaction)
     {
-        //
+       return $user->id === $transaction->user_id || $user->role_id === 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class TransactionPolicy
      */
     public function create(User $user)
     {
-        // return $user->role_id === 1;
+        // 
     }
 
     /**
@@ -53,7 +53,7 @@ class TransactionPolicy
      */
     public function update(User $user, Transaction $transaction)
     {
-        // return $user->role_id === 1;
+       // 
     }
 
     /**
@@ -65,7 +65,7 @@ class TransactionPolicy
      */
     public function delete(User $user, Transaction $transaction)
     {
-        // return $user->role_id === 1;
+        // 
     }
 
     /**
@@ -77,18 +77,18 @@ class TransactionPolicy
      */
     public function restore(User $user, Transaction $transaction)
     {
-        // return $user->role_id === 1;
+        // 
     }
 
     /**
      * Determine whether the user can permanently delete the transaction.
      *
      * @param  \App\User  $user
-     * @param  \App\Transaction  $transaction
+     * @param  \App\Transaction  $transa ction
      * @return mixed
      */
     public function forceDelete(User $user, Transaction $transaction)
     {
-        // return $user->role_id === 1;
+        // 
     }
 }

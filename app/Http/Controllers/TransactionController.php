@@ -43,7 +43,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-         
+        // 
     }
 
     /**
@@ -121,9 +121,11 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
+
         $item_id = $transaction->item_id;
         
-        if($request->input('status') == 4) {
+        if($request->input('status') == 3 || $request->input('status') == 4 ) {
+        // dd($request->input('status'));
             $item = Item::find($item_id);
             $item->isAvailable = true;
             $item->save();

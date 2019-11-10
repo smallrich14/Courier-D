@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One|Rokkitt&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans|Rokkitt&display=swap" rel="stylesheet">
 
     <!-- fontawesome icons -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
@@ -31,11 +31,15 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
+                <a href="#"><i class="fab fa-facebook pr-1 text-light"></i></a> 
+                <a href="#"><i class="fab fa-instagram pr-1 text-light"></i></a>
+                <a href="#"><i class="fab fa-twitter-square text-light"></i></a>
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                   <div class="ml-3 pl-3 pb-1"  style="border-left: 1px solid grey;">JoyRide</div> 
                 </a>
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -105,6 +109,14 @@
             @yield('content')
         </main>
     </div>
+
+
+   <footer class="footer">
+    
+        <p class="pt-5 mt-5 text-center fixed">JoyRide | B43 Zuitt Coding Bootcamp &copy; 2019 <br> <small><b>Disclaimer: No Copyright Intended for Educational purposes only</b></small></p>
+    </footer>
+
+
 
     <!--Script-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
