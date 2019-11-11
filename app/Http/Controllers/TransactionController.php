@@ -21,7 +21,6 @@ class TransactionController extends Controller
     public function index(Transaction $transaction)
     {
         // $categories = Category::all();
-      
         $statuses = Status::all();
         $items = Item::all();
 
@@ -94,7 +93,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        // $this->authorize('view', $transaction);
+        
         $items = Item::all();
         // dd($transaction->item->name);
         // echo "im here";
