@@ -60,9 +60,6 @@
             }
 
             .container {
-                background-image: url('../public/images/scooter.webp');
-                background-repeat: no-repeat;
-                background-position: center;
                 font-size: 100px;
             }
 
