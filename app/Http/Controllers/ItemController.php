@@ -133,7 +133,6 @@ class ItemController extends Controller
         $request->validate([
             'name' => 'required|string',
             'category' => 'required',
-            'image' => 'required|image|max:20000',
             'description' => 'required|string',
         ]);
 
